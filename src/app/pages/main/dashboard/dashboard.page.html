@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard Académico</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="activeSegment">
+      <ion-segment-button value="overview">
+        <ion-label>General</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="calendar">
+        <ion-label>Calendario</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="activeSegment === 'overview'">
+    <ion-card class="semester-summary">
+      <ion-card-header>
+        <ion-card-subtitle>Semestre Actual</ion-card-subtitle>
+        <ion-card-title>{{ semesters[0].name }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Materias</ion-label>
+      </ion-list-header>
+
+      <ion-item *ngFor="let subject of semesters[0].subjects" button (click)="navigateToSubject(subject.id)">
+        <ion-label>
+          <h2>{{ subject.name }}</h2>
+          <p>{{ subject.professor }}</p>
+        </ion-label>
+        <ion-chip [color]="getStatusColor(subject.status)" slot="end">
+          {{ subject.status }}
+        </ion-chip>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" fill="clear" (click)="navigateToAssignments()">
+      Ver todas las tareas
+      <ion-icon name="arrow-forward" slot="end"></ion-icon>
+    </ion-button>
+  </ng-container>
+
+  <ng-container *ngIf="activeSegment === 'calendar'">
+    <!-- Implementar vista de calendario -->
+  </ng-container>
+</ion-content>

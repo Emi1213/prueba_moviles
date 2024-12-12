@@ -1,1 +1,95 @@
-<app-header title="Inicio"></app-header>
+<!-- home.page.html -->
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Panel Académico</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <!-- Cursos -->
+      <ion-card *ngFor="let course of courses">
+        <ion-item (click)="toggleCourse(course.id)" button detail="true" [detailIcon]="expandedCourse === course.id ? 'chevron-up' : 'chevron-down'">
+          <ion-label>
+            <h2>{{ course.name }}</h2>
+            <p>Periodo: {{ course.academicPeriod }}</p>
+          </ion-label>
+        </ion-item>
+  
+        <!-- Materias del curso -->
+        <ng-container *ngIf="expandedCourse === course.id">
+          <ion-list>
+            <ion-item-group *ngFor="let subject of course.subjects">
+              <ion-item (click)="toggleSubject(subject.id)" button detail="true" [detailIcon]="expandedSubject === subject.id ? 'chevron-up' : 'chevron-down'">
+                <ion-label>
+                  <h3>{{ subject.name }}</h3>
+                  <ion-text color="medium">
+                    <p>
+                      <ion-icon name="person"></ion-icon> {{ subject.professor }} |
+                      <ion-icon name="book"></ion-icon> {{ subject.credits }} créditos |
+                      <ion-icon name="time"></ion-icon> {{ subject.schedule.day }} {{ subject.schedule.time }}
+                    </p>
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+  
+              <!-- Tareas de la materia -->
+              <ng-container *ngIf="expandedSubject === subject.id">
+                <ion-card *ngFor="let assignment of subject.assignments" class="assignment-card">
+                  <ion-card-header>
+                    <ion-card-title>{{ assignment.title }}</ion-card-title>
+                    <ion-card-subtitle>{{ assignment.description }}</ion-card-subtitle>
+                  </ion-card-header>
+  
+                  <ion-card-content>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="12" size-md="6">
+                          <!-- Estado y calificación -->
+                          <ion-chip [color]="getStatusColor(assignment.status)">
+                            <ion-label>{{ assignment.status }}</ion-label>
+                          </ion-chip>
+                          
+                          <ion-chip *ngIf="assignment.grade !== null" color="primary">
+                            <ion-label>{{ assignment.grade }}/{{ assignment.maxGrade }}</ion-label>
+                          </ion-chip>
+                        </ion-col>
+                        
+                        <ion-col size="12" size-md="6" class="ion-text-end">
+                          <ion-text color="medium">
+                            Fecha de entrega: {{ formatDate(assignment.dueDate) }}
+                          </ion-text>
+                        </ion-col>
+                      </ion-row>
+  
+                      <!-- Feedback -->
+                      <ion-row *ngIf="assignment.feedback">
+                        <ion-col>
+                          <ion-text color="medium">
+                            <i>"{{ assignment.feedback }}"</i>
+                          </ion-text>
+                        </ion-col>
+                      </ion-row>
+  
+                      <!-- Recursos -->
+                      <ion-row *ngIf="assignment.resources.length > 0">
+                        <ion-col>
+                          <ion-list>
+                            <ion-item *ngFor="let resource of assignment.resources" [href]="resource.url" target="_blank">
+                              <ion-icon name="document" slot="start"></ion-icon>
+                              <ion-label>{{ resource.name }}</ion-label>
+                              <ion-icon name="download" slot="end"></ion-icon>
+                            </ion-item>
+                          </ion-list>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-content>
+                </ion-card>
+              </ng-container>
+            </ion-item-group>
+          </ion-list>
+        </ng-container>
+      </ion-card>
+    </ion-list>
+  </ion-content>

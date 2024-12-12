@@ -7,10 +7,23 @@ const routes: Routes = [
   {
     path: '',
     component: MainPage
-  },  {
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'subject-detail',
+    loadChildren: () => import('./subject-detail/subject-detail.module').then( m => m.SubjectDetailPageModule)
+  },
+  {
+    path: 'assignments',
+    loadChildren: () => import('./assignments/assignments.module').then( m => m.AssignmentsPageModule)
   }
+
 
 ];
 

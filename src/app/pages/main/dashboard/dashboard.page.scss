@@ -1,0 +1,46 @@
+/* Estilos compartidos */
+.semester-summary {
+    margin: 16px;
+  }
+  
+  ion-segment {
+    padding: 5px;
+  }
+  
+  ion-card {
+    margin: 16px;
+    border-radius: 12px;
+  }
+  
+  ion-chip {
+    font-size: 0.8em;
+  }
+  
+  /* dashboard.page.scss */
+  .welcome-card {
+    background: var(--ion-color-primary);
+    color: white;
+    
+    ion-card-title, ion-card-subtitle {
+      color: white;
+    }
+  }
+  
+  /* subject-detail.page.scss */
+  .subject-info {
+    padding: 16px;
+    
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+  
+  /* assignments.page.scss */
+  .assignment-card {
+    margin: 8px 16px;
+    border: 1px solid var(--ion-color-light);
+    
+    &.overdue {
+      border-left: 3px solid var(--ion-color-danger);
+    }
+  }

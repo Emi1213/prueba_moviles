@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="filterAssignments($event)" [value]="filter">
+    <ion-segment-button value="all">
+      <ion-label>Todas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pending">
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      <ion-label>Completadas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-item *ngFor="let assignment of assignments">
+      <ion-label>
+        <h2>{{ assignment.title }}</h2>
+        <p>{{ assignment.description }}</p>
+        <ion-note color="medium">
+          Entrega: {{ assignment.dueDate | date:'shortDate' }}
+        </ion-note>
+      </ion-label>
+      <ion-chip [color]="getStatusColor(assignment.status)" slot="end">
+        {{ assignment.status }}
+      </ion-chip>
+    </ion-item>
+  </ion-list>
+</ion-content>
