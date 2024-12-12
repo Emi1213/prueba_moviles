@@ -35,10 +35,10 @@ export interface Resource {
   id: string
   name: string
   type: string
-  url: string
 }
 
 export interface Schedule {
   day: string
-  time: string
+  start: number
+  end: number
 }
