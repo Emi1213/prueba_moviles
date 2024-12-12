@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Assignment, Subject } from 'src/mock/IInterface'
 import { MOCK_DATA } from '../../../../mock/data'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-semesters',
@@ -15,7 +16,7 @@ export class SemestersPage implements OnInit {
 
   subjects: Subject[] = MOCK_DATA.semesters[0].subjects
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {}
@@ -33,7 +34,17 @@ export class SemestersPage implements OnInit {
     )
   }
 
+  navigateTarea(taskId: string) {
+    this.router.navigate(['main/task/', taskId])
+  }
+
   logout() {
     console.log('Logging out...')
+  }
+
+  registerSubject(subjectId: string) {
+    console.log('Registering subject:', subjectId)
+    const subject = this.subjects.find((subject) => subject.id === subjectId)
+    subject!.isRegistered = true
   }
 }

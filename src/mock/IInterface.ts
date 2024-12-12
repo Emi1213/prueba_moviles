@@ -12,6 +12,7 @@ export interface Semester {
 export interface Subject {
   id: string
   name: string
+  isRegistered: boolean
   professor: string
   credits: number
   schedule: Schedule

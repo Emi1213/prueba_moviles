@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./semesters/semesters.module').then((m) => m.SemestersModule),
   },
   {
-    path: 'semesters',
+    path: 'task/:taskId',
     loadChildren: () =>
-      import('./semesters/semesters.module').then((m) => m.SemestersModule),
+      import('./task/task.module').then((m) => m.TaskPageModule),
   },
 ]
 

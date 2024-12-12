@@ -18,29 +18,42 @@
         </div>
       </ion-card-header>
 
-      <ion-card-content>
-        <div class="assignments-section">
-          <h3>
-            <ion-icon name="document-text-outline"></ion-icon>
-            Asignaciones Pendientes
-          </h3>
+      <ng-container *ngIf="subject.isRegistered">
+        <ion-card-content>
+          <div class="assignments-section">
+            <h3>
+              <ion-icon name="document-text-outline"></ion-icon>
+              Asignaciones Pendientes
+            </h3>
 
-          <ion-list>
-            <ion-item *ngFor="let assignment of subject.assignments" class="assignment-item">
-              <ion-label>
-                <h2>{{ assignment.title }}</h2>
-                <p class="due-date">
-                  <ion-icon name="calendar-outline"></ion-icon>
-                  Fecha límite: {{ assignment.dueDate | date:'yyyy-MM-dd' }}
-                </p>
-              </ion-label>
-              <ion-button slot="end" (click)="onSubmitAssignment(subject, assignment)">
-                Entregar
-              </ion-button>
-            </ion-item>
-          </ion-list>
-        </div>
-      </ion-card-content>
+            <ion-list>
+              <ion-item
+                *ngFor="let assignment of subject.assignments"
+                class="assignment-item"
+              >
+                <ion-label>
+                  <h2>{{ assignment.title }}</h2>
+                  <p class="due-date">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    Fecha límite: {{ assignment.dueDate | date:'yyyy-MM-dd' }}
+                  </p>
+                </ion-label>
+                <ion-button slot="end" (click)="navigateTarea(assignment.id)">
+                  Ver
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+        </ion-card-content>
+      </ng-container>
+
+      <ng-container *ngIf="!subject.isRegistered">
+        <ion-card-content>
+          <ion-button (click)="registerSubject(subject.id)">
+            Registrarse
+          </ion-button>
+        </ion-card-content>
+      </ng-container>
     </ion-card>
   </div>
 </ion-content>

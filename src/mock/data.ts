@@ -21,6 +21,7 @@ export const MOCK_DATA: MockData = {
           id: 'MAT101',
           name: 'Matemáticas Avanzadas',
           professor: 'Dr. Juan Pérez',
+          isRegistered: true,
           credits: 4,
           schedule: {
             day: 'Lunes',
@@ -60,6 +61,7 @@ export const MOCK_DATA: MockData = {
         {
           id: 'PROG202',
           name: 'Programación Avanzada',
+          isRegistered: false,
           professor: 'Ing. María González',
           credits: 6,
           schedule: {
