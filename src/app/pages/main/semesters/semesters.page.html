@@ -1,0 +1,46 @@
+<app-header title="Cursos"></app-header>
+
+<ion-content>
+  <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button *ngFor="let semester of semesters" [value]="semester">
+      <ion-label>{{ semester }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="subjects-container">
+    <ion-card *ngFor="let subject of subjects" class="subject-card">
+      <ion-card-header>
+        <ion-card-title>{{ subject.name }}</ion-card-title>
+        <ion-card-subtitle>{{ subject.id }}</ion-card-subtitle>
+        <div class="professor">
+          <ion-icon name="person-outline"></ion-icon>
+          {{ subject.professor }}
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="assignments-section">
+          <h3>
+            <ion-icon name="document-text-outline"></ion-icon>
+            Asignaciones Pendientes
+          </h3>
+
+          <ion-list>
+            <ion-item *ngFor="let assignment of subject.assignments" class="assignment-item">
+              <ion-label>
+                <h2>{{ assignment.title }}</h2>
+                <p class="due-date">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  Fecha límite: {{ assignment.dueDate | date:'yyyy-MM-dd' }}
+                </p>
+              </ion-label>
+              <ion-button slot="end" (click)="onSubmitAssignment(subject, assignment)">
+                Entregar
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
