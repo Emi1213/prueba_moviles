@@ -7,11 +7,17 @@
       <ion-button (click)="dismiss()" *ngIf="isModal">
         <ion-icon slot="start" name="close-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="!isPage" (click)="signOut()">
-        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-      </ion-button>
+
     </ion-buttons>
     <ion-title>
       <strong>{{ title }}</strong></ion-title>
+    <ion-buttons slot="end">
+      <ion-buttons slot="end">
+        <ion-button *ngIf="!isPage" (click)="signOut()">
+          <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
