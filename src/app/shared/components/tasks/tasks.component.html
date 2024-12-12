@@ -34,4 +34,5 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+  <ion-button *ngIf="!task?.grade" expand="block" color="primary" (click)="submitTask()">Enviar tarea</ion-button>
 </ion-list>

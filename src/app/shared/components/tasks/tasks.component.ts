@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, inject, Input, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
+import { UtilsService } from 'src/app/services/utils.service'
 import { Assignment } from 'src/mock/IInterface'
 import { MOCK_DATA } from 'src/mock/data'
 
@@ -11,6 +12,7 @@ import { MOCK_DATA } from 'src/mock/data'
 })
 export class TasksComponent implements OnInit {
   task: Assignment | null = null
+  utils = inject(UtilsService)
 
   constructor(
     private router: Router,
@@ -33,5 +35,15 @@ export class TasksComponent implements OnInit {
       assignments.find((assignment) => assignment.id === taskId) || null
   }
 
-  upload() {}
+  submitTask() {
+    console.log('Submitting task:', this.task?.title)
+    this.utils.presentToast({
+      message: `Tarea subida con éxito `,
+      color: 'success',
+      position: 'top',
+      duration: 2000,
+      icon: 'checkmark-circle-outline',
+    })
+    this.utils.routerLink('main/home')
+  }
 }

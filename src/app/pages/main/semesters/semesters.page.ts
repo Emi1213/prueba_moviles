@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { Assignment, Subject } from 'src/mock/IInterface'
 import { MOCK_DATA } from '../../../../mock/data'
 import { Router } from '@angular/router'
+import { UtilsService } from 'src/app/services/utils.service'
 
 @Component({
   selector: 'app-semesters',
@@ -13,6 +14,7 @@ export class SemestersPage implements OnInit {
   currentSemester: string = 'Semestre 2024-1'
   semesters: string[] = ['Semestre 2024-1']
   selectedSegment: string = 'Semestre 2024-1'
+  utils = inject(UtilsService)
 
   subjects: Subject[] = MOCK_DATA.semesters[0].subjects
 
@@ -43,7 +45,13 @@ export class SemestersPage implements OnInit {
   }
 
   registerSubject(subjectId: string) {
-    console.log('Registering subject:', subjectId)
+    this.utils.presentToast({
+      message: `Tarea subida con éxito `,
+      color: 'success',
+      position: 'top',
+      duration: 2000,
+      icon: 'checkmark-circle-outline',
+    })
     const subject = this.subjects.find((subject) => subject.id === subjectId)
     subject!.isRegistered = true
   }
