@@ -1,9 +1,13 @@
 {
-  "courses": [
+  "email": "estudiante@universidad.edu",
+  "password": "hashedPassword123",
+  "semesters": [
     {
-      "id": "MCA2024",
-      "name": "Maestría en Computación Aplicada",
-      "academicPeriod": "2024-A",
+      "name": "2024-A",
+      "user": {
+        "email": "estudiante@universidad.edu",
+        "password": "hashedPassword123"
+      },
       "subjects": [
         {
           "id": "MAT101",
@@ -14,6 +18,8 @@
             "day": "Lunes",
             "time": "08:00-10:00"
           },
+          "status": "ongoing",
+          "finalGrade": null,
           "assignments": [
             {
               "id": "ASG001",
@@ -22,7 +28,6 @@
               "dueDate": "2024-04-15T23:59:59",
               "status": "submitted",
               "grade": 18.5,
-              "maxGrade": 20,
               "feedback": "Excelente trabajo en la resolución de problemas",
               "resources": [
                 {
@@ -40,7 +45,6 @@
               "dueDate": "2024-05-20T23:59:59",
               "status": "pending",
               "grade": null,
-              "maxGrade": 30,
               "resources": []
             }
           ]
@@ -54,6 +58,8 @@
             "day": "Martes",
             "time": "14:00-17:00"
           },
+          "status": "ongoing",
+          "finalGrade": null,
           "assignments": [
             {
               "id": "ASG003",
@@ -62,7 +68,6 @@
               "dueDate": "2024-04-10T23:59:59",
               "status": "graded",
               "grade": 28,
-              "maxGrade": 30,
               "feedback": "Excelente implementación de seguridad",
               "resources": [
                 {
@@ -70,42 +75,6 @@
                   "name": "Especificaciones API.docx",
                   "type": "document",
                   "url": "/resources/api-specs.docx"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ING2024",
-      "name": "Ingeniería en Sistemas",
-      "academicPeriod": "2024-A",
-      "subjects": [
-        {
-          "id": "BD101",
-          "name": "Bases de Datos",
-          "professor": "Ing. Carlos Ramírez",
-          "credits": 5,
-          "schedule": {
-            "day": "Miércoles",
-            "time": "10:00-13:00"
-          },
-          "assignments": [
-            {
-              "id": "ASG004",
-              "title": "Diseño de Base de Datos",
-              "description": "Crear el modelo ER para un sistema académico",
-              "dueDate": "2024-04-25T23:59:59",
-              "status": "submitted",
-              "grade": null,
-              "maxGrade": 25,
-              "resources": [
-                {
-                  "id": "REC003",
-                  "name": "Requerimientos.pdf",
-                  "type": "pdf",
-                  "url": "/resources/requirements.pdf"
                 }
               ]
             }
