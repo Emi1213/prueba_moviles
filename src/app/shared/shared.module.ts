@@ -5,9 +5,15 @@ import { IonicModule } from '@ionic/angular'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CustomInputComponent } from './components/custom-input/custom-input.component'
 import { LogoComponent } from './components/logo/logo.component'
+import { TasksComponent } from './components/tasks/tasks.component'
 
 @NgModule({
-  declarations: [HeaderComponent, CustomInputComponent, LogoComponent],
+  declarations: [
+    HeaderComponent,
+    CustomInputComponent,
+    LogoComponent,
+    TasksComponent,
+  ],
   imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
   exports: [
     HeaderComponent,
@@ -15,6 +21,7 @@ import { LogoComponent } from './components/logo/logo.component'
     ReactiveFormsModule,
     FormsModule,
     LogoComponent,
+    TasksComponent,
   ],
 })
 export class SharedModule {}

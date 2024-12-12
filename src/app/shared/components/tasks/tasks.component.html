@@ -1,0 +1,37 @@
+<ion-list>
+  <ion-list [inset]="true">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Tarea</ion-card-subtitle>
+        <ion-card-title>{{ task?.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Fecha de entrega:</strong></p>
+        <div>{{ task?.dueDate | date: 'dd/MM/yyyy' }}</div>
+        <div>
+          <p><strong>Indicaciones generales:</strong></p>
+          <p>{{ task?.description }}</p>
+        </div>
+        <div></div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngIf="task?.grade" [inset]="true">
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Calificación:</strong></p>
+        <div>{{ task?.grade }}</div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngIf="!task?.grade" inset="true">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Subir archivo</ion-label>
+          <input type="file" />
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-list>
