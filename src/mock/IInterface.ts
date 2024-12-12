@@ -26,7 +26,7 @@ export interface Assignment {
   description: string
   dueDate: Date
   status: string
-  grade: number | null
+  grade?: number | null
   feedback?: string
   resources: Resource[]
 }
