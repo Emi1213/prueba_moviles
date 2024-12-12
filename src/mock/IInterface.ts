@@ -1,44 +1,44 @@
-
-export interface Course {
-  courses: CourseElement[];
+export interface User {
+  email: string
+  password: string
 }
 
-export interface CourseElement {
-  id:             string;
-  name:           string;
-  academicPeriod: string;
-  subjects:       Subject[];
+export interface Semester {
+  name: string
+  subjects: Subject[]
+  user: User
 }
 
 export interface Subject {
-  id:          string;
-  name:        string;
-  professor:   string;
-  credits:     number;
-  schedule:    Schedule;
-  assignments: Assignment[];
+  id: string
+  name: string
+  professor: string
+  credits: number
+  schedule: Schedule
+  status: string
+  finalGrade: number | null
+  assignments: Assignment[]
 }
 
 export interface Assignment {
-  id:          string;
-  title:       string;
-  description: string;
-  dueDate:     Date;
-  status:      string;
-  grade:       number | null;
-  maxGrade:    number;
-  feedback?:   string;
-  resources:   Resource[];
+  id: string
+  title: string
+  description: string
+  dueDate: Date
+  status: string
+  grade: number | null
+  feedback?: string
+  resources: Resource[]
 }
 
 export interface Resource {
-  id:   string;
-  name: string;
-  type: string;
-  url:  string;
+  id: string
+  name: string
+  type: string
+  url: string
 }
 
 export interface Schedule {
-  day:  string;
-  time: string;
+  day: string
+  time: string
 }
