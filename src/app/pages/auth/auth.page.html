@@ -1,5 +1,6 @@
 <app-header title="Autenticacion" ></app-header>
 <ion-content>
+  <app-logo></app-logo>
   <div class="">
     <form
       [formGroup]="group"
@@ -35,17 +36,6 @@
       >
         Ingresar
         <ion-icon slot="end" name="log-in-outline"></ion-icon>
-      </ion-button>
-      <ion-button
-        expand="block"
-        shape="round"
-        mode="ios"
-        class="submit"
-        type="submit"
-        routerLink="sign-up"
-      >
-        Iniciar sesion
-        <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
     </form>
   </div>

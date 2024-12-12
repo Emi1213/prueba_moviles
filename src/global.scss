@@ -117,19 +117,7 @@ ion-button {
   }
 }
 
-ion-button.submit {
-  --background: linear-gradient(45deg, #c08cff, #ac5fff);
-  --background-hover: #ac5fff;
-  --border-radius: 50px;
-  font-weight: bold;
-  padding: 0.75rem;
-  font-size: 1rem;
-  color: white;
-}
 
-ion-button.submit ion-icon {
-  color: white;
-}
 
 @media (min-width: 769px) {
   .auth-form {

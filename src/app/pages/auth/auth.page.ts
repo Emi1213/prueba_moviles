@@ -27,7 +27,7 @@ export class AuthPage  {
     if(this.group.valid){
       this.firebaseSrvc.signIn(this.group.value as User).then((res)=>{
         this.utilsSrvc.presentToast({
-          message: ` Welcome ${res.user.displayName}`,
+          message: ` Bienvenido ${res.user.email}`,
           color: 'success',
           position: 'top',
           duration: 2000,
