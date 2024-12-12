@@ -1,0 +1,7 @@
+{
+  "name": "appGalarza",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
