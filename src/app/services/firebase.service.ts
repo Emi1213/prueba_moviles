@@ -60,14 +60,7 @@ export class FirebaseService {
     );
   }
 
-  updateUser(displayName: string) {
-    const currentUser = getAuth().currentUser;
-    if (currentUser) {
-      return updateProfile(currentUser, { displayName });
-    } else {
-      return Promise.reject('No user is currently signed in.');
-    }
-  }
+  
 
   sendResetPasswordEmail(email: string) {
     return sendPasswordResetEmail(getAuth(), email);
