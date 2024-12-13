@@ -16,15 +16,15 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
-  <ion-list *ngIf="task?.grade" [inset]="true">
+  <ion-list *ngIf="submission" [inset]="true">
     <ion-card>
       <ion-card-content>
         <p><strong>Calificación:</strong></p>
-        <div>{{ task?.grade }}</div>
+        <div>{{ submission.grade }}</div>
       </ion-card-content>
     </ion-card>
   </ion-list>
-  <ion-list *ngIf="!task?.grade" inset="true">
+  <ion-list *ngIf="!submission" inset="true">
     <ion-card>
       <ion-card-content>
         <ion-item>
@@ -34,4 +34,11 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+  <ion-button
+    *ngIf="!submission?.isSubmitted"
+    expand="block"
+    color="primary"
+    (click)="submitTask()"
+    >Enviar tarea</ion-button
+  >
 </ion-list>

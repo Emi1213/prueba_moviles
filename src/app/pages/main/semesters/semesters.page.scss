@@ -1,0 +1,95 @@
+.portal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+ion-segment {
+  padding: 16px;
+}
+
+.subjects-container {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.subject-card {
+  margin: 0;
+
+  ion-card-header {
+    padding-bottom: 8px;
+  }
+
+  ion-card-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  ion-card-subtitle {
+    margin-top: 4px;
+    color: var(--ion-color-medium);
+  }
+
+  .professor {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    color: var(--ion-color-medium);
+
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+.assignments-section {
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 500;
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+.assignment-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .due-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--ion-color-medium);
+
+    ion-icon {
+      font-size: 16px;
+    }
+  }
+
+  ion-button {
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+}
