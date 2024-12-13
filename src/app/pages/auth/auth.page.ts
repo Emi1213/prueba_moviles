@@ -2,7 +2,9 @@ import { Component, inject, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { User } from 'src/app/models/user.interface'
 import { FirebaseService } from 'src/app/services/firebase.service'
+import { UsersService } from 'src/app/services/users.service'
 import { UtilsService } from 'src/app/services/utils.service'
+import { IUser as IUser } from 'src/mock/IInterface'
 
 @Component({
   selector: 'app-auth',
@@ -17,6 +19,7 @@ export class AuthPage {
   })
 
   firebaseSrvc = inject(FirebaseService)
+  userSrv = inject(UsersService)
   utilsSrvc = inject(UtilsService)
 
   submit() {
@@ -31,7 +34,14 @@ export class AuthPage {
             duration: 2000,
             icon: 'checkmark-circle-outline',
           })
-          this.getUserInfo(res.user.uid)
+
+          if (!res.user.email) {
+            return
+          }
+
+          this.userSrv.getUserByEmail(res.user.email).then((user) => {
+            this.getUserInfo(res.user.uid, user)
+          })
         })
         .catch((err) => {
           this.utilsSrvc.presentToast({
@@ -45,7 +55,7 @@ export class AuthPage {
     }
   }
 
-  async getUserInfo(uid: string) {
+  async getUserInfo(uid: string, user: IUser) {
     if (this.group.valid) {
       const loading = await this.utilsSrvc.presentLoading()
       loading.present()
@@ -54,7 +64,7 @@ export class AuthPage {
       this.firebaseSrvc
         .getDocumet(path)
         .then((res) => {
-          this.utilsSrvc.saveInLocalStorage('user', res)
+          this.utilsSrvc.saveInLocalStorage('user', user)
           this.utilsSrvc.routerLink('/main/home')
         })
         .catch((err) => {})

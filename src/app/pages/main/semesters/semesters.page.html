@@ -2,8 +2,11 @@
 
 <ion-content>
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
-    <ion-segment-button *ngFor="let semester of semesters" [value]="semester">
-      <ion-label>{{ semester }}</ion-label>
+    <ion-segment-button
+      *ngFor="let semester of semesters$ | async"
+      [value]="semester"
+    >
+      <ion-label>{{ semester.name }}</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -11,20 +14,24 @@
     <ion-card *ngFor="let subject of subjects" class="subject-card">
       <ion-card-header>
         <ion-card-title>{{ subject.name }}</ion-card-title>
-        <ion-card-subtitle>{{ subject.id }}</ion-card-subtitle>
+        <ion-card-subtitle> {{ subject.credits }} Creditos </ion-card-subtitle>
         <div class="professor">
           <ion-icon name="person-outline"></ion-icon>
           {{ subject.professor }}
         </div>
       </ion-card-header>
 
-      <ng-container *ngIf="subject.isRegistered">
+      <ng-container *ngIf="isEnrolled(subject)">
         <ion-card-content>
           <div class="assignments-section">
             <h3>
               <ion-icon name="document-text-outline"></ion-icon>
               Asignaciones Pendientes
             </h3>
+
+            <ng-container *ngIf="subject.assignments.length === 0">
+              <p>No hay asignaciones pendientes</p>
+            </ng-container>
 
             <ion-list>
               <ion-item
@@ -47,9 +54,9 @@
         </ion-card-content>
       </ng-container>
 
-      <ng-container *ngIf="!subject.isRegistered">
+      <ng-container *ngIf="!isEnrolled(subject)">
         <ion-card-content>
-          <ion-button (click)="registerSubject(subject.id)">
+          <ion-button (click)="registerSubject(subject)">
             Registrarse
           </ion-button>
         </ion-card-content>
